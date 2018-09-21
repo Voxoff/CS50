@@ -9,9 +9,24 @@
 // Converts a fraction formatted as X/Y to eighths
 int duration(string fraction)
 {
-  int math = fraction[2] / 8; 
-  return fraction[0] / math;
-  return -1;
+  // printf("%c\n", fraction[2]);
+  // 1/4
+  int denom = atoi(&fraction[2]);
+  // printf("%i\n", denom);
+  int div;
+  int res = 8;
+  if(denom < 8)
+  {
+    div = 8 / denom;
+    res = atoi(&fraction[0]) * div;
+  }
+  else if(denom > 8)
+  {
+    div = denom / 8;
+    res = atoi(&fraction[0]) / div;
+  }
+  printf("%i\n", res);
+  return res;
 }
 
 // Calculates frequency (in Hz) of a note
