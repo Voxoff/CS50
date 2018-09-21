@@ -31,14 +31,17 @@ int duration(string fraction)
 // Calculates frequency (in Hz) of a note
 int frequency(string note)
 { 
-  int j = ((int) note[1] == 35 || (int) note[1] == 98) ? 0 : 1;
+  int j = ((int) note[1] == 35 || (int) note[1] == 98) ? 1 : 0;
   int diff_from_mid = atoi(&note[1 + j]) - 4;
-  int freq = (int) note[0 + j] - 65;
+  int freq = (int) note[0] - 65;
   int scale = (freq == 0 || freq == 1) ? freq : freq - 8;
   int n = (diff_from_mid * 8) + scale;    
-  float ffs = n / 12.00;
-  float frequency = pow(2.00, ffs) * 440;
-  return (int) frequency;
+  float ffs = (n / 12.00);
+  // ffs = round(ffs);
+  // ffs = ffs >= 0.5 ? ceil(ffs) : floor(ffs);
+  int frequency = pow(2.00, ffs) * 440;
+  printf("%i\n", frequency);
+  return frequency;
 }
 
 // Determines whether a string represents a rest
