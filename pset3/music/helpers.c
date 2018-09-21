@@ -9,12 +9,8 @@
 // Converts a fraction formatted as X/Y to eighths
 int duration(string fraction)
 {
-  // printf("%c\n", fraction[2]);
-  // 1/4
   int denom = atoi(&fraction[2]);
-  // printf("%i\n", denom);
-  int div;
-  int res = 8;
+  int div, res;
   if(denom < 8)
   {
     div = 8 / denom;
@@ -25,7 +21,10 @@ int duration(string fraction)
     div = denom / 8;
     res = atoi(&fraction[0]) / div;
   }
-  printf("%i\n", res);
+  else
+  {
+    res = atoi(&fraction[0]);
+  }
   return res;
 }
 
