@@ -28,19 +28,46 @@ int duration(string fraction)
   return res;
 }
 
-// Calculates frequency (in Hz) of a note
-int frequency(string note)
-{ 
-  int j = ((int) note[1] == 35 || (int) note[1] == 98) ? 1 : 0;
-  int diff_from_mid = atoi(&note[1 + j]) - 4;
+int frequency(string note) { 
+  int j = 0;
+  if ((int) note[1] == 35) {
+    j = 1;
+  }
+  else if ((int) note[1] == 98) {
+    j = -1;
+  }
+  int diff_from_mid = atoi(&note[1 + abs(j)]) - 4;
   int freq = (int) note[0] - 65;
+  int scale;
+  if (freq == 1){
+    scale = 2;
+  }
+  else if (freq == 2){
+    scale = -9;
+  }
+  else if (freq == 3){
+    scale = -7;
+  }
+  else if (freq == 4){
+    scale = -5;
+  }
+  else if (freq == 5){
+    scale = -4;
+  }
+  else if (freq == 6){
+    scale = -2;
+  }
+  else if (freq == 7){
+    scale = 0;
+  }
+  // BORED
   int scale = (freq == 0 || freq == 1) ? freq : freq - 8;
-  int n = (diff_from_mid * 8) + scale;    
+
+  int n = (diff_from_mid * 12) + scale + j;    
   float ffs = (n / 12.00);
-  // ffs = round(ffs);
-  // ffs = ffs >= 0.5 ? ceil(ffs) : floor(ffs);
-  int frequency = pow(2.00, ffs) * 440;
-  printf("%i\n", frequency);
+  float frequency = pow(2.00, ffs) * 440;
+  frequency = round(frequency);
+  printf("%i\n", (int) frequency);
   return frequency;
 }
 
