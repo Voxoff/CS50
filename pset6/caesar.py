@@ -1,4 +1,6 @@
-def caesar(num):
+import sys
+
+def main(num):
   s = input('-->')
   string = ""
   for letter in s:
@@ -17,4 +19,5 @@ def caesar(num):
       string += letter
   print(string)
 
-caesar(1)
+if __name__ == '__main__':
+  main(sys.argv[1])

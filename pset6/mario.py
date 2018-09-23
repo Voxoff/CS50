@@ -1,5 +1,4 @@
-def main(num):
-  print(num)
+def main():
   while True:
     height = int(input('-->'))
     if height < 23:
@@ -14,4 +13,4 @@ def main(num):
 
 
 if __name__ == '__main__':
-  main(num)
+  main()
